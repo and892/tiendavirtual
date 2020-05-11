@@ -1,0 +1,87 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="tiendavirtualApp.productoPedido.home.title">Producto Pedidos</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-producto-pedido" [routerLink]="['/producto-pedido/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="tiendavirtualApp.productoPedido.home.createLabel">
+            Create a new Producto Pedido
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="productoPedidos?.length === 0">
+        <span jhiTranslate="tiendavirtualApp.productoPedido.home.notFound">No productoPedidos found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="productoPedidos?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cantidad"><span jhiTranslate="tiendavirtualApp.productoPedido.cantidad">Cantidad</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="precioTotal"><span jhiTranslate="tiendavirtualApp.productoPedido.precioTotal">Precio Total</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="estado"><span jhiTranslate="tiendavirtualApp.productoPedido.estado">Estado</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="producto.id"><span jhiTranslate="tiendavirtualApp.productoPedido.producto">Producto</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="pedido.id"><span jhiTranslate="tiendavirtualApp.productoPedido.pedido">Pedido</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let productoPedido of productoPedidos ;trackBy: trackId">
+                    <td><a [routerLink]="['/producto-pedido', productoPedido.id, 'view']">{{ productoPedido.id }}</a></td>
+                    <td>{{ productoPedido.cantidad }}</td>
+                    <td>{{ productoPedido.precioTotal }}</td>
+                    <td jhiTranslate="{{ 'tiendavirtualApp.ProductoPedidoEstado.' + productoPedido.estado }}">{{ productoPedido.estado }}</td>
+                    <td>
+                        <div *ngIf="productoPedido.producto">
+                            <a [routerLink]="['/producto', productoPedido.producto?.id, 'view']" >{{ productoPedido.producto?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="productoPedido.pedido">
+                            <a [routerLink]="['/pedido', productoPedido.pedido?.id, 'view']" >{{ productoPedido.pedido?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/producto-pedido', productoPedido.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/producto-pedido', productoPedido.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(productoPedido)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="productoPedidos?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

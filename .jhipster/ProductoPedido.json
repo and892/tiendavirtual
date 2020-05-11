@@ -1,0 +1,62 @@
+{
+    "name": "ProductoPedido",
+    "fields": [
+        {
+            "fieldName": "cantidad",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": "0"
+        },
+        {
+            "fieldName": "precioTotal",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": "0"
+        },
+        {
+            "fieldName": "estado",
+            "fieldType": "ProductoPedidoEstado",
+            "fieldValues": "DISPONIBLE,AGOTADO"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "pedido",
+            "otherEntityRelationshipName": "productoPedido",
+            "relationshipName": "pedido"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "producto",
+            "otherEntityRelationshipName": "productoPedido",
+            "relationshipValidateRules": "required",
+            "relationshipName": "producto",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "pedido",
+            "otherEntityRelationshipName": "productoPedido",
+            "relationshipName": "pedido",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200510192100",
+    "entityTableName": "producto_pedido",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,81 @@
+{
+    "name": "Factura",
+    "fields": [
+        {
+            "fieldName": "fecha",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "detalles",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "estado",
+            "fieldType": "FacturaEstado",
+            "fieldValues": "PAGADO,EXPEDIDO,CANCELADO",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "metodoDePago",
+            "fieldType": "MetodoPago",
+            "fieldValues": "TARJETA_DE_CREDITO,EFECTIVO,PAYPAL",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fechaDePago",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "montoPagado",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "envio",
+            "otherEntityRelationshipName": "factura",
+            "relationshipName": "envio"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "cliente",
+            "otherEntityRelationshipName": "factura",
+            "relationshipValidateRules": "required",
+            "relationshipName": "cliente",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "pedido",
+            "otherEntityRelationshipName": "factura",
+            "relationshipValidateRules": "required",
+            "relationshipName": "pedido",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200510192200",
+    "entityTableName": "factura",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

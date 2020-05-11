@@ -1,0 +1,34 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sucursal">
+            <h2><span jhiTranslate="tiendavirtualApp.sucursal.detail.title">Sucursal</span> {{ sucursal.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="tiendavirtualApp.sucursal.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{ sucursal.nombre }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.sucursal.direccion">Direccion</span></dt>
+                <dd>
+                    <span>{{ sucursal.direccion }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sucursal', sucursal.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

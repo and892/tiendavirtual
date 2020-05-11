@@ -1,0 +1,92 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-pedido-heading" jhiTranslate="tiendavirtualApp.pedido.home.createOrEditLabel">Create or edit a Pedido</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.pedido.fechaPedido" for="field_fechaPedido">Fecha Pedido</label>
+                    <div class="d-flex">
+                        <input id="field_fechaPedido" type="datetime-local" class="form-control" name="fechaPedido" formControlName="fechaPedido" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('fechaPedido')!.invalid && (editForm.get('fechaPedido')!.dirty || editForm.get('fechaPedido')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fechaPedido')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('fechaPedido')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.pedido.estado" for="field_estado">Estado</label>
+                    <select class="form-control" name="estado" formControlName="estado" id="field_estado">
+                        <option value="COMPLETADO">{{ 'tiendavirtualApp.PedidoEstado.COMPLETADO' | translate }}</option>
+                        <option value="PENDIENTE">{{ 'tiendavirtualApp.PedidoEstado.PENDIENTE' | translate }}</option>
+                        <option value="CANCELADO">{{ 'tiendavirtualApp.PedidoEstado.CANCELADO' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.pedido.codigoPedido" for="field_codigoPedido">Codigo Pedido</label>
+                    <input type="text" class="form-control" name="codigoPedido" id="field_codigoPedido"
+                           formControlName="codigoPedido"/>
+                    <div *ngIf="editForm.get('codigoPedido')!.invalid && (editForm.get('codigoPedido')!.dirty || editForm.get('codigoPedido')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('codigoPedido')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.pedido.cliente" for="field_cliente">Cliente</label>
+                    <select class="form-control" id="field_cliente" name="cliente" formControlName="cliente">
+                        <option *ngIf="!editForm.get('cliente')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="clienteOption.id === editForm.get('cliente')!.value?.id ? editForm.get('cliente')!.value : clienteOption" *ngFor="let clienteOption of clientes; trackBy: trackById">{{ clienteOption.id }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('cliente')!.invalid && (editForm.get('cliente')!.dirty || editForm.get('cliente')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('cliente')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.pedido.productoPedido" for="field_productoPedido">Producto Pedido</label>
+                    <select class="form-control" id="field_productoPedido" name="productoPedido" formControlName="productoPedido">
+                        <option *ngIf="!editForm.get('productoPedido')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="productoPedidoOption.id === editForm.get('productoPedido')!.value?.id ? editForm.get('productoPedido')!.value : productoPedidoOption" *ngFor="let productoPedidoOption of productopedidos; trackBy: trackById">{{ productoPedidoOption.id }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('productoPedido')!.invalid && (editForm.get('productoPedido')!.dirty || editForm.get('productoPedido')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('productoPedido')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

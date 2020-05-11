@@ -1,0 +1,125 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-cliente-heading" jhiTranslate="tiendavirtualApp.cliente.home.createOrEditLabel">Create or edit a Cliente</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.cliente.nombreCompleto" for="field_nombreCompleto">Nombre Completo</label>
+                    <input type="text" class="form-control" name="nombreCompleto" id="field_nombreCompleto"
+                           formControlName="nombreCompleto"/>
+                    <div *ngIf="editForm.get('nombreCompleto')!.invalid && (editForm.get('nombreCompleto')!.dirty || editForm.get('nombreCompleto')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nombreCompleto')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.cliente.apellidoCompleto" for="field_apellidoCompleto">Apellido Completo</label>
+                    <input type="text" class="form-control" name="apellidoCompleto" id="field_apellidoCompleto"
+                           formControlName="apellidoCompleto"/>
+                    <div *ngIf="editForm.get('apellidoCompleto')!.invalid && (editForm.get('apellidoCompleto')!.dirty || editForm.get('apellidoCompleto')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('apellidoCompleto')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.cliente.genero" for="field_genero">Genero</label>
+                    <select class="form-control" name="genero" formControlName="genero" id="field_genero">
+                        <option value="HOMBRE">{{ 'tiendavirtualApp.Genero.HOMBRE' | translate }}</option>
+                        <option value="MUJER">{{ 'tiendavirtualApp.Genero.MUJER' | translate }}</option>
+                        <option value="OTRO">{{ 'tiendavirtualApp.Genero.OTRO' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('genero')!.invalid && (editForm.get('genero')!.dirty || editForm.get('genero')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('genero')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.cliente.correo" for="field_correo">Correo</label>
+                    <input type="text" class="form-control" name="correo" id="field_correo"
+                           formControlName="correo"/>
+                    <div *ngIf="editForm.get('correo')!.invalid && (editForm.get('correo')!.dirty || editForm.get('correo')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('correo')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('correo')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Correo' }">
+                            This field should follow pattern for "Correo".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.cliente.telefono" for="field_telefono">Telefono</label>
+                    <input type="text" class="form-control" name="telefono" id="field_telefono"
+                           formControlName="telefono"/>
+                    <div *ngIf="editForm.get('telefono')!.invalid && (editForm.get('telefono')!.dirty || editForm.get('telefono')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('telefono')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.cliente.direccion" for="field_direccion">Direccion</label>
+                    <input type="text" class="form-control" name="direccion" id="field_direccion"
+                           formControlName="direccion"/>
+                    <div *ngIf="editForm.get('direccion')!.invalid && (editForm.get('direccion')!.dirty || editForm.get('direccion')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('direccion')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.cliente.ciudad" for="field_ciudad">Ciudad</label>
+                    <input type="text" class="form-control" name="ciudad" id="field_ciudad"
+                           formControlName="ciudad"/>
+                    <div *ngIf="editForm.get('ciudad')!.invalid && (editForm.get('ciudad')!.dirty || editForm.get('ciudad')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ciudad')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.cliente.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="user">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

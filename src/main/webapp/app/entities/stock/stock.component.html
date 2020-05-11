@@ -1,0 +1,73 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="tiendavirtualApp.stock.home.title">Stocks</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-stock" [routerLink]="['/stock/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="tiendavirtualApp.stock.home.createLabel">
+            Create a new Stock
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="stocks?.length === 0">
+        <span jhiTranslate="tiendavirtualApp.stock.home.notFound">No stocks found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="stocks?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="tiendavirtualApp.stock.cantidad">Cantidad</span></th>
+                    <th scope="col" ><span jhiTranslate="tiendavirtualApp.stock.producto">Producto</span></th>
+                    <th scope="col" ><span jhiTranslate="tiendavirtualApp.stock.sucursal">Sucursal</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let stock of stocks ;trackBy: trackId">
+                    <td><a [routerLink]="['/stock', stock.id, 'view']">{{ stock.id }}</a></td>
+                    <td>{{ stock.cantidad }}</td>
+                    <td>
+                        <div *ngIf="stock.producto">
+                            <a [routerLink]="['/producto', stock.producto?.id, 'view']" >{{ stock.producto?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="stock.sucursal">
+                            <a [routerLink]="['/sucursal', stock.sucursal?.id, 'view']" >{{ stock.sucursal?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/stock', stock.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/stock', stock.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(stock)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

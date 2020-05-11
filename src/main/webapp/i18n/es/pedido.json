@@ -1,0 +1,28 @@
+{
+  "tiendavirtualApp": {
+    "pedido": {
+      "home": {
+        "title": "Pedidos",
+        "createLabel": "Crear nuevo Pedido",
+        "createOrEditLabel": "Crear o editar Pedido",
+        "notFound": "Ningún Pedidos encontrado"
+      },
+      "created": "Un nuevo Pedido ha sido creado con el identificador {{ param }}",
+      "updated": "Un Pedido ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Pedido ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Pedido {{ id }}?"
+      },
+      "detail": {
+        "title": "Pedido"
+      },
+      "fechaPedido": "Fecha Pedido",
+      "estado": "Estado",
+      "codigoPedido": "Codigo Pedido",
+      "productoPedido": "Producto Pedido",
+      "factura": "Factura",
+      "cliente": "Cliente",
+      "productoPedido": "Producto Pedido"
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+    "name": "Cliente",
+    "fields": [
+        {
+            "fieldName": "nombreCompleto",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "apellidoCompleto",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "genero",
+            "fieldType": "Genero",
+            "fieldValues": "HOMBRE,MUJER,OTRO",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "correo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "^[^@\\s]+@[@\\s]+\\.[^@\\s]+$"
+        },
+        {
+            "fieldName": "telefono",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "direccion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ciudad",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "cliente",
+            "relationshipName": "user",
+            "otherEntityField": "login",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "factura",
+            "otherEntityRelationshipName": "cliente",
+            "relationshipName": "factura"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "pedido",
+            "otherEntityRelationshipName": "cliente",
+            "relationshipName": "pedido"
+        }
+    ],
+    "changelogDate": "20200510191900",
+    "entityTableName": "cliente",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

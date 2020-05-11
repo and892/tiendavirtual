@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="envio">
+            <h2><span jhiTranslate="tiendavirtualApp.envio.detail.title">Envio</span> {{ envio.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="tiendavirtualApp.envio.fecha">Fecha</span></dt>
+                <dd>
+                    <span>{{ envio.fecha }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.envio.detalles">Detalles</span></dt>
+                <dd>
+                    <span>{{ envio.detalles }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.envio.codigoLocalizacion">Codigo Localizacion</span></dt>
+                <dd>
+                    <span>{{ envio.codigoLocalizacion }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.envio.factura">Factura</span></dt>
+                <dd>
+                    <div *ngIf="envio.factura">
+                        <a [routerLink]="['/factura', envio.factura?.id, 'view']">{{ envio.factura?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/envio', envio.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

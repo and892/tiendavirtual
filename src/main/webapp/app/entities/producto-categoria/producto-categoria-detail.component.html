@@ -1,0 +1,34 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="productoCategoria">
+            <h2><span jhiTranslate="tiendavirtualApp.productoCategoria.detail.title">Producto Categoria</span> {{ productoCategoria.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="tiendavirtualApp.productoCategoria.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{ productoCategoria.nombre }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.productoCategoria.descripcion">Descripcion</span></dt>
+                <dd>
+                    <span>{{ productoCategoria.descripcion }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/producto-categoria', productoCategoria.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

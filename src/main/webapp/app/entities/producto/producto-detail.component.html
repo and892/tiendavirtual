@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="producto">
+            <h2><span jhiTranslate="tiendavirtualApp.producto.detail.title">Producto</span> {{ producto.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="tiendavirtualApp.producto.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{ producto.nombre }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.producto.descripcion">Descripcion</span></dt>
+                <dd>
+                    <span>{{ producto.descripcion }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.producto.precio">Precio</span></dt>
+                <dd>
+                    <span>{{ producto.precio }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.producto.talla">Talla</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'tiendavirtualApp.Talla.' + producto.talla }}">{{ producto.talla }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.producto.image">Image</span></dt>
+                <dd>
+                    <div *ngIf="producto.image">
+                        <a (click)="openFile(producto?.imageContentType!, producto?.image)">
+                            <img [src]="'data:' + producto.imageContentType + ';base64,' + producto.image" style="max-width: 100%;" alt="producto image"/>
+                        </a>
+                        {{ producto.imageContentType }}, {{ byteSize(producto.image) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.producto.productoCatergoria">Producto Catergoria</span></dt>
+                <dd>
+                    <div *ngIf="producto.productoCatergoria">
+                        <a [routerLink]="['/producto-categoria', producto.productoCatergoria?.id, 'view']">{{ producto.productoCatergoria?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/producto', producto.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+export const enum MetodoPago {
+  TARJETA_DE_CREDITO = 'TARJETA_DE_CREDITO',
+  EFECTIVO = 'EFECTIVO',
+  PAYPAL = 'PAYPAL'
+}

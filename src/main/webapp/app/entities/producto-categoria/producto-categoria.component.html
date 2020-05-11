@@ -1,0 +1,63 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="tiendavirtualApp.productoCategoria.home.title">Producto Categorias</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-producto-categoria" [routerLink]="['/producto-categoria/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="tiendavirtualApp.productoCategoria.home.createLabel">
+            Create a new Producto Categoria
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="productoCategorias?.length === 0">
+        <span jhiTranslate="tiendavirtualApp.productoCategoria.home.notFound">No productoCategorias found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="productoCategorias?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="tiendavirtualApp.productoCategoria.nombre">Nombre</span></th>
+                    <th scope="col" ><span jhiTranslate="tiendavirtualApp.productoCategoria.descripcion">Descripcion</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let productoCategoria of productoCategorias ;trackBy: trackId">
+                    <td><a [routerLink]="['/producto-categoria', productoCategoria.id, 'view']">{{ productoCategoria.id }}</a></td>
+                    <td>{{ productoCategoria.nombre }}</td>
+                    <td>{{ productoCategoria.descripcion }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/producto-categoria', productoCategoria.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/producto-categoria', productoCategoria.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(productoCategoria)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

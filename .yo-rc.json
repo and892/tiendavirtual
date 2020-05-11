@@ -1,0 +1,43 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.alfonsocortez.mitienda",
+      "nativeLanguage": "es"
+    },
+    "jhipsterVersion": "6.8.0",
+    "applicationType": "monolith",
+    "baseName": "tiendavirtual",
+    "packageName": "com.alfonsocortez.mitienda",
+    "packageFolder": "com/alfonsocortez/mitienda",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": "spring-websocket",
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "N2ZmMzBiZDNjZDlmM2RlNTc5NTdlNmRiNTQ3NDE5NjI2MTFmMDlkMGE0NzVmMTk2YmEwYTNlY2MzNjE5Njk4ZWZmMzRkNjAwMjhjZjg1Mjg1MzlkNDViMzkwNmE5ZTVkMWZmMGEyNWNiMDI2MTQ1ODAzNmZmYTc2YTRmYjU0YjU=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1589136341588,
+    "testFrameworks": ["protractor"],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "es",
+    "languages": ["es", "en"],
+    "blueprints": []
+  }
+}

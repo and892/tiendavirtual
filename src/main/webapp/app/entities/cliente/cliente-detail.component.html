@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="cliente">
+            <h2><span jhiTranslate="tiendavirtualApp.cliente.detail.title">Cliente</span> {{ cliente.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="tiendavirtualApp.cliente.nombreCompleto">Nombre Completo</span></dt>
+                <dd>
+                    <span>{{ cliente.nombreCompleto }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.cliente.apellidoCompleto">Apellido Completo</span></dt>
+                <dd>
+                    <span>{{ cliente.apellidoCompleto }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.cliente.genero">Genero</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'tiendavirtualApp.Genero.' + cliente.genero }}">{{ cliente.genero }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.cliente.correo">Correo</span></dt>
+                <dd>
+                    <span>{{ cliente.correo }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.cliente.telefono">Telefono</span></dt>
+                <dd>
+                    <span>{{ cliente.telefono }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.cliente.direccion">Direccion</span></dt>
+                <dd>
+                    <span>{{ cliente.direccion }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.cliente.ciudad">Ciudad</span></dt>
+                <dd>
+                    <span>{{ cliente.ciudad }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.cliente.user">User</span></dt>
+                <dd>
+                    {{ cliente.user?.login }}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cliente', cliente.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

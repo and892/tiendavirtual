@@ -1,0 +1,113 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-producto-heading" jhiTranslate="tiendavirtualApp.producto.home.createOrEditLabel">Create or edit a Producto</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.producto.nombre" for="field_nombre">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="field_nombre"
+                           formControlName="nombre"/>
+                    <div *ngIf="editForm.get('nombre')!.invalid && (editForm.get('nombre')!.dirty || editForm.get('nombre')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nombre')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.producto.descripcion" for="field_descripcion">Descripcion</label>
+                    <input type="text" class="form-control" name="descripcion" id="field_descripcion"
+                           formControlName="descripcion"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.producto.precio" for="field_precio">Precio</label>
+                    <input type="number" class="form-control" name="precio" id="field_precio"
+                           formControlName="precio"/>
+                    <div *ngIf="editForm.get('precio')!.invalid && (editForm.get('precio')!.dirty || editForm.get('precio')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('precio')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('precio')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('precio')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.producto.talla" for="field_talla">Talla</label>
+                    <select class="form-control" name="talla" formControlName="talla" id="field_talla">
+                        <option value="S">{{ 'tiendavirtualApp.Talla.S' | translate }}</option>
+                        <option value="M">{{ 'tiendavirtualApp.Talla.M' | translate }}</option>
+                        <option value="L">{{ 'tiendavirtualApp.Talla.L' | translate }}</option>
+                        <option value="XL">{{ 'tiendavirtualApp.Talla.XL' | translate }}</option>
+                        <option value="XXL">{{ 'tiendavirtualApp.Talla.XXL' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('talla')!.invalid && (editForm.get('talla')!.dirty || editForm.get('talla')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('talla')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.producto.image" for="field_image">Image</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('imageContentType')!.value + ';base64,' + editForm.get('image')!.value" style="max-height: 100px;" *ngIf="editForm.get('image')!.value" alt="producto image"/>
+                        <div *ngIf="editForm.get('image')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{ editForm.get('imageContentType')!.value }}, {{ byteSize(editForm.get('image')!.value) }}</span>
+                            <button type="button" (click)="clearInputImage('image', 'imageContentType', 'file_image')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image" (change)="setFileData($event, 'image', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image" id="field_image"
+                           formControlName="image"/>
+                    <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+                           formControlName="imageContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="tiendavirtualApp.producto.productoCatergoria" for="field_productoCatergoria">Producto Catergoria</label>
+                    <select class="form-control" id="field_productoCatergoria" name="productoCatergoria" formControlName="productoCatergoria">
+                        <option *ngIf="!editForm.get('productoCatergoria')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="productoCategoriaOption.id === editForm.get('productoCatergoria')!.value?.id ? editForm.get('productoCatergoria')!.value : productoCategoriaOption" *ngFor="let productoCategoriaOption of productocategorias; trackBy: trackById">{{ productoCategoriaOption.id }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('productoCatergoria')!.invalid && (editForm.get('productoCatergoria')!.dirty || editForm.get('productoCatergoria')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('productoCatergoria')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

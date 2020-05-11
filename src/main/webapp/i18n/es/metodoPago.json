@@ -1,0 +1,10 @@
+{
+  "tiendavirtualApp": {
+    "MetodoPago": {
+      "null": "",
+      "TARJETA_DE_CREDITO": "TARJETA_DE_CREDITO",
+      "EFECTIVO": "EFECTIVO",
+      "PAYPAL": "PAYPAL"
+    }
+  }
+}

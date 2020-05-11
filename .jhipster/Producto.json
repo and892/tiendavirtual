@@ -1,0 +1,59 @@
+{
+    "name": "Producto",
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "precio",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": "0"
+        },
+        {
+            "fieldName": "talla",
+            "fieldType": "Talla",
+            "fieldValues": "S,M,L,XL,XXL",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "image",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "productoCategoria",
+            "otherEntityRelationshipName": "producto",
+            "relationshipValidateRules": "required",
+            "relationshipName": "productoCatergoria",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200510191500",
+    "entityTableName": "producto",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

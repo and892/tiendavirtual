@@ -1,0 +1,148 @@
+entity Producto{
+	nombre String required
+    descripcion String
+    precio BigDecimal required min(0)
+    talla Talla required
+    image ImageBlob
+}
+
+enum Talla{
+	S, M, L, XL, XXL
+}
+
+entity ProductoCategoria{
+	nombre String required
+	descripcion String
+}
+//------------------------------
+entity Stock{
+  cantidad Long required min(0)
+}
+
+entity Sucursal{
+  nombre String required
+  direccion String required
+}
+
+//------------------------------
+entity Cliente{
+	nombreCompleto String required
+    apellidoCompleto String required
+    genero Genero required
+    correo String required pattern(/^[^@\s]+@[@\s]+\.[^@\s]+$/)
+    telefono String required
+    direccion String required
+    ciudad String required
+}
+
+enum Genero{
+	HOMBRE, MUJER, OTRO
+}
+
+//------------------------------
+entity Pedido{
+	fechaPedido Instant required
+    estado PedidoEstado
+    codigoPedido String required
+}
+
+enum PedidoEstado{
+	COMPLETADO, PENDIENTE, CANCELADO
+}
+
+entity ProductoPedido{
+	cantidad Integer required min(0)
+    precioTotal BigDecimal required min(0)
+    estado ProductoPedidoEstado
+}
+
+enum ProductoPedidoEstado{
+	DISPONIBLE, AGOTADO
+}
+
+//------------------------------
+entity Factura{
+	fecha Instant required
+    detalles String
+    estado FacturaEstado required
+    metodoDePago MetodoPago required
+    fechaDePago Instant required
+    montoPagado BigDecimal required
+}
+
+enum FacturaEstado{
+	PAGADO, EXPEDIDO, CANCELADO
+}
+
+enum MetodoPago{
+	TARJETA_DE_CREDITO, EFECTIVO, PAYPAL
+}
+
+
+entity Envio{
+	fecha String
+    detalles Instant required
+    codigoLocalizacion String
+}
+
+
+
+// ---------------- Relaciones ----------------
+
+relationship OneToOne {
+    Cliente{user(login)} to User
+}
+
+relationship ManyToOne{
+	ProductoPedido{Producto required} to Producto
+    Stock{producto} to Producto
+    Stock{sucursal} to Sucursal
+}
+
+relationship OneToMany{
+    Cliente{Factura} to Factura{Cliente required}
+
+	Cliente{pedido} to Pedido{cliente required}
+
+    Pedido{productoPedido} to ProductoPedido{pedido}
+
+    Pedido{factura} to Factura{pedido required}
+    ProductoPedido{Pedido} to Pedido{productoPedido required}
+    Factura{envio} to Envio{Factura}
+
+    ProductoCategoria{producto} to Producto{ProductoCatergoria required}
+}
+
+service * with serviceClass
+paginate Producto, Cliente, Pedido, Factura, Envio, ProductoPedido with
+pagination
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

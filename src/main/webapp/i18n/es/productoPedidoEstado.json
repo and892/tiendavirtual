@@ -1,0 +1,9 @@
+{
+  "tiendavirtualApp": {
+    "ProductoPedidoEstado": {
+      "null": "",
+      "DISPONIBLE": "DISPONIBLE",
+      "AGOTADO": "AGOTADO"
+    }
+  }
+}

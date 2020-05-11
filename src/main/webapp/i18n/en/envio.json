@@ -1,0 +1,25 @@
+{
+  "tiendavirtualApp": {
+    "envio": {
+      "home": {
+        "title": "Envios",
+        "createLabel": "Create a new Envio",
+        "createOrEditLabel": "Create or edit a Envio",
+        "notFound": "No Envios found"
+      },
+      "created": "A new Envio is created with identifier {{ param }}",
+      "updated": "A Envio is updated with identifier {{ param }}",
+      "deleted": "A Envio is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Envio {{ id }}?"
+      },
+      "detail": {
+        "title": "Envio"
+      },
+      "fecha": "Fecha",
+      "detalles": "Detalles",
+      "codigoLocalizacion": "Codigo Localizacion",
+      "factura": "Factura"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+    "name": "Pedido",
+    "fields": [
+        {
+            "fieldName": "fechaPedido",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "estado",
+            "fieldType": "PedidoEstado",
+            "fieldValues": "COMPLETADO,PENDIENTE,CANCELADO"
+        },
+        {
+            "fieldName": "codigoPedido",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "productoPedido",
+            "otherEntityRelationshipName": "pedido",
+            "relationshipName": "productoPedido"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "factura",
+            "otherEntityRelationshipName": "pedido",
+            "relationshipName": "factura"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "cliente",
+            "otherEntityRelationshipName": "pedido",
+            "relationshipValidateRules": "required",
+            "relationshipName": "cliente",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "productoPedido",
+            "otherEntityRelationshipName": "pedido",
+            "relationshipValidateRules": "required",
+            "relationshipName": "productoPedido",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200510192000",
+    "entityTableName": "pedido",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

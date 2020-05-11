@@ -1,0 +1,41 @@
+{
+    "name": "Stock",
+    "fields": [
+        {
+            "fieldName": "cantidad",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": "0"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "producto",
+            "otherEntityRelationshipName": "stock",
+            "relationshipName": "producto",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "sucursal",
+            "otherEntityRelationshipName": "stock",
+            "relationshipName": "sucursal",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200510191700",
+    "entityTableName": "stock",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

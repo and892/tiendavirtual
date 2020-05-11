@@ -1,0 +1,27 @@
+{
+  "tiendavirtualApp": {
+    "productoPedido": {
+      "home": {
+        "title": "Producto Pedidos",
+        "createLabel": "Create a new Producto Pedido",
+        "createOrEditLabel": "Create or edit a Producto Pedido",
+        "notFound": "No Producto Pedidos found"
+      },
+      "created": "A new Producto Pedido is created with identifier {{ param }}",
+      "updated": "A Producto Pedido is updated with identifier {{ param }}",
+      "deleted": "A Producto Pedido is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Producto Pedido {{ id }}?"
+      },
+      "detail": {
+        "title": "Producto Pedido"
+      },
+      "cantidad": "Cantidad",
+      "precioTotal": "Precio Total",
+      "estado": "Estado",
+      "pedido": "Pedido",
+      "producto": "Producto",
+      "pedido": "Pedido"
+    }
+  }
+}

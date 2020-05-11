@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="factura">
+            <h2><span jhiTranslate="tiendavirtualApp.factura.detail.title">Factura</span> {{ factura.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="tiendavirtualApp.factura.fecha">Fecha</span></dt>
+                <dd>
+                    <span>{{ factura.fecha }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.factura.detalles">Detalles</span></dt>
+                <dd>
+                    <span>{{ factura.detalles }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.factura.estado">Estado</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'tiendavirtualApp.FacturaEstado.' + factura.estado }}">{{ factura.estado }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.factura.metodoDePago">Metodo De Pago</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'tiendavirtualApp.MetodoPago.' + factura.metodoDePago }}">{{ factura.metodoDePago }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.factura.fechaDePago">Fecha De Pago</span></dt>
+                <dd>
+                    <span>{{ factura.fechaDePago }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.factura.montoPagado">Monto Pagado</span></dt>
+                <dd>
+                    <span>{{ factura.montoPagado }}</span>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.factura.cliente">Cliente</span></dt>
+                <dd>
+                    <div *ngIf="factura.cliente">
+                        <a [routerLink]="['/cliente', factura.cliente?.id, 'view']">{{ factura.cliente?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="tiendavirtualApp.factura.pedido">Pedido</span></dt>
+                <dd>
+                    <div *ngIf="factura.pedido">
+                        <a [routerLink]="['/pedido', factura.pedido?.id, 'view']">{{ factura.pedido?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/factura', factura.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

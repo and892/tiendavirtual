@@ -1,0 +1,40 @@
+{
+    "name": "Envio",
+    "fields": [
+        {
+            "fieldName": "fecha",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "detalles",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "codigoLocalizacion",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "factura",
+            "otherEntityRelationshipName": "envio",
+            "relationshipName": "factura",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200510192300",
+    "entityTableName": "envio",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,31 @@
+{
+  "tiendavirtualApp": {
+    "cliente": {
+      "home": {
+        "title": "Clientes",
+        "createLabel": "Crear nuevo Cliente",
+        "createOrEditLabel": "Crear o editar Cliente",
+        "notFound": "Ningún Clientes encontrado"
+      },
+      "created": "Un nuevo Cliente ha sido creado con el identificador {{ param }}",
+      "updated": "Un Cliente ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Cliente ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Cliente {{ id }}?"
+      },
+      "detail": {
+        "title": "Cliente"
+      },
+      "nombreCompleto": "Nombre Completo",
+      "apellidoCompleto": "Apellido Completo",
+      "genero": "Genero",
+      "correo": "Correo",
+      "telefono": "Telefono",
+      "direccion": "Direccion",
+      "ciudad": "Ciudad",
+      "user": "User",
+      "factura": "Factura",
+      "pedido": "Pedido"
+    }
+  }
+}

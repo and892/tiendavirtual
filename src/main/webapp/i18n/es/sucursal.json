@@ -1,0 +1,23 @@
+{
+  "tiendavirtualApp": {
+    "sucursal": {
+      "home": {
+        "title": "Sucursals",
+        "createLabel": "Crear nuevo Sucursal",
+        "createOrEditLabel": "Crear o editar Sucursal",
+        "notFound": "Ningún Sucursals encontrado"
+      },
+      "created": "Un nuevo Sucursal ha sido creado con el identificador {{ param }}",
+      "updated": "Un Sucursal ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Sucursal ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Sucursal {{ id }}?"
+      },
+      "detail": {
+        "title": "Sucursal"
+      },
+      "nombre": "Nombre",
+      "direccion": "Direccion"
+    }
+  }
+}

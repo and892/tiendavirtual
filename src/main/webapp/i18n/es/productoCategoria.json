@@ -1,0 +1,24 @@
+{
+  "tiendavirtualApp": {
+    "productoCategoria": {
+      "home": {
+        "title": "Producto Categorias",
+        "createLabel": "Crear nuevo Producto Categoria",
+        "createOrEditLabel": "Crear o editar Producto Categoria",
+        "notFound": "Ningún Producto Categorias encontrado"
+      },
+      "created": "Un nuevo Producto Categoria ha sido creado con el identificador {{ param }}",
+      "updated": "Un Producto Categoria ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Producto Categoria ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Producto Categoria {{ id }}?"
+      },
+      "detail": {
+        "title": "Producto Categoria"
+      },
+      "nombre": "Nombre",
+      "descripcion": "Descripcion",
+      "producto": "Producto"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "tiendavirtualApp": {
+    "sucursal": {
+      "home": {
+        "title": "Sucursals",
+        "createLabel": "Create a new Sucursal",
+        "createOrEditLabel": "Create or edit a Sucursal",
+        "notFound": "No Sucursals found"
+      },
+      "created": "A new Sucursal is created with identifier {{ param }}",
+      "updated": "A Sucursal is updated with identifier {{ param }}",
+      "deleted": "A Sucursal is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Sucursal {{ id }}?"
+      },
+      "detail": {
+        "title": "Sucursal"
+      },
+      "nombre": "Nombre",
+      "direccion": "Direccion"
+    }
+  }
+}
