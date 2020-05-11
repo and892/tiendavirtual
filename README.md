@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # tiendavirtual
 
 This application was generated using JHipster 6.8.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.8.0](https://www.jhipster.tech/documentation-archive/v6.8.0).
@@ -188,3 +189,6 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [protractor]: https://angular.github.io/protractor/
 [leaflet]: https://leafletjs.com/
 [definitelytyped]: https://definitelytyped.org/
+=======
+# tiendavirtual
+>>>>>>> 8e0d4e0942723a542318d7b1fa3d58b98ac7605d
