@@ -11,6 +11,7 @@ import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { FacturaService } from './factura.service';
 import { FacturaDeleteDialogComponent } from './factura-delete-dialog.component';
 // import {ImasVendidos} from './masVendidos.model';
+import {Chart} from 'chart.js';
 
 @Component({
   selector: 'jhi-factura',
@@ -29,6 +30,9 @@ export class FacturaComponent implements OnInit, OnDestroy {
   graficaCtx: any;
   myBarChart: any;
   fechas: string[] = [];
+
+  NombresFactura: any[] = [];
+  CantidadNombresFactura: any[] = [];
   IProductos: any[] = [];
   lel: any;
 
@@ -82,43 +86,77 @@ export class FacturaComponent implements OnInit, OnDestroy {
   totalGraphicChart(contexto: any, data: any): any{
 
     data.forEach((element: any, index: number) => {
-      console.warn(element.fecha)
+      // console.warn(element.fecha)
       this.fechas.push(element.fecha)
 
       this.lel = {
-        producto: element.pedido.productoPedido.producto.nombre,
-        cantidad: element.pedido.productoPedido.cantidad,
+        label: element.pedido.productoPedido.producto.nombre,
+        data: element.pedido.productoPedido.cantidad,
       }
       this.IProductos.push(this.lel)
+      this.NombresFactura.push(element.pedido.productoPedido.producto.nombre)
+      this.CantidadNombresFactura.push(element.pedido.productoPedido.cantidad)
     });
     console.warn(this.IProductos)
 
-    console.warn(this.fechas)
+    // console.warn(this.fechas)
+
     this.myBarChart = new Chart(contexto, {
       type: 'bar',
       data: {
+        // labels: ["China", "India", "United States", "Indonesia", "Brazil", "Pakistan", "Nigeria", "Bangladesh", "Russia", "Japan"],
+        labels: this.NombresFactura,
+        datasets: [{
+          label: 'Productos',
+          data: this.CantidadNombresFactura,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)',
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)'
+          ]
+        },
+      ]
+
         // Barra inferior horizontal
+        /*
         labels: this.fechas,
-        datasets: this.IProductos
-        // [
-        //   {
-        //     label: 'Producto 1',
-        //     backgroundColor: 'red',
-        //     data: [1,20, 30, 50],
-        //   },
-        //   {
-        //     label: 'Producto 2',
-        //     backgroundColor: 'green',
-        //     data: [1,10, 20, 30],
-        //   },
-        //   {
-        //     label: 'Producto 3',
-        //     backgroundColor: 'yellow',
-        //     data: [1,20, 50, 80],
-        //   },
-        // ],
+        datasets: [
+          {
+            label: this.IProductos,
+            data:[this.IProductos]
+
+          }
+        ]*/
+        /*
+        datasets:[
+          {
+            label: 'Producto 1',
+            backgroundColor: 'red',
+            data: [1,20, 30, 50],
+          },
+          {
+            label: 'Producto 2',
+            backgroundColor: 'green',
+            data: [1,10, 20, 30],
+          },
+          {
+            label: 'Producto 3',
+            backgroundColor: 'yellow',
+            data: [1,20, 50, 80],
+          },
+        ],*/
       },
+
     });
+
   }
 
   renderChart(data: any): any{
