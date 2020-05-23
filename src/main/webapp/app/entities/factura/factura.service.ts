@@ -37,6 +37,8 @@ export class FacturaService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
   findAll(): Observable<EntityResponseType> {
+    console.warn('this.resourceUrl');
+    console.warn(this.resourceUrl);
     return this.http
       .get<IFactura>(`${this.resourceUrl}`, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));

@@ -13,7 +13,8 @@ import { ProductoDeleteDialogComponent } from './producto-delete-dialog.componen
 
 @Component({
   selector: 'jhi-producto',
-  templateUrl: './producto.component.html'
+  templateUrl: './producto.component.html',
+  styleUrls: ['./producto.scss']
 })
 export class ProductoComponent implements OnInit, OnDestroy {
   productos?: IProducto[];
@@ -24,6 +25,7 @@ export class ProductoComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  filtroPost = '';
 
   constructor(
     protected productoService: ProductoService,

@@ -1,0 +1,15 @@
+<h2 class="text-center m-5">Nuestros Productos</h2>
+
+
+<input type="search" class="form-control contenedorBuscador" name="filtroPost" placeholder="Buscar ..." [(ngModel)]="filtroPost">
+<br>
+<br>
+<br>
+<div class="contenedorProductos">
+
+    <div class="contenedorProductos__productos" *ngFor="let producto of productos | filtro: filtroPost">
+      <!-- <jhi-producto-user></jhi-producto-user> -->
+      <jhi-producto-user (productoSeleccionado)="clickProduct($event)" [producto]="producto"></jhi-producto-user>
+    </div>
+</div>
+

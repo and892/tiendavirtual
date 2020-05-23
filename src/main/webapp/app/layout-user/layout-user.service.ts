@@ -1,0 +1,25 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { SERVER_API_URL } from 'app/app.constants';
+// import {IProducto } from './../shared/model/producto.model';
+// import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class LayoutUserService {
+  public resourceUrl = SERVER_API_URL + 'api/productos';
+  public resourceUrl2 = SERVER_API_URL + 'api/producto-categorias';
+
+  constructor(
+        private http: HttpClient
+      ) { }
+
+  getAllProductos():any{
+    return this.http.get(this.resourceUrl);
+  }
+  getAllCategorias():any {
+    return this.http.get(this.resourceUrl2);
+  }
+}

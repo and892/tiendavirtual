@@ -11,7 +11,9 @@ import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { FacturaService } from './factura.service';
 import { FacturaDeleteDialogComponent } from './factura-delete-dialog.component';
 // import {ImasVendidos} from './masVendidos.model';
-import {Chart} from 'chart.js';
+
+import {Chart, ChartOptions,ChartType, ChartDataSets } from 'chart.js';
+import { Label } from 'ng2-charts';
 
 @Component({
   selector: 'jhi-factura',
@@ -34,7 +36,51 @@ export class FacturaComponent implements OnInit, OnDestroy {
   NombresFactura: any[] = [];
   CantidadNombresFactura: any[] = [];
   IProductos: any[] = [];
-  lel: any;
+
+  groupProducts: any[] = [];
+  productoData: any;
+
+  dringlichkeiten: any[] = []
+
+
+  // Charts
+  barChartOptions: ChartOptions = {
+    responsive: true,
+    title: {
+      display: true,
+      text: 'Productos ventidos en el dia',
+      fontSize: 30,
+      padding: 30,
+      fontColor: '#000'
+    },
+
+    // },
+    // tooltips: {
+    //   titleFontSize: 18,
+    //   xPadding: 10,
+    //   yPadding: 10,
+    //   mode:'label',
+    //   callbacks: {
+
+    //     label(tooltipItem: ChartTooltipItem , data: ChartData): any{
+
+    //       // console.warn(data)
+    //       console.warn(tooltipItem.label)
+    //       return tooltipItem.xLabel ='as'
+    //     },
+    //   },
+    // }
+  };
+
+  // barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  barChartLabels: Label[] = [];
+  barChartType: ChartType = 'bar'
+  barChartLegend = true;
+  barChartPlugins = [];
+
+  barChartData: ChartDataSets[] = [
+      { data: [], label: 'Cantidad', stack: '' }
+    ];
 
   constructor(
     protected facturaService: FacturaService,
@@ -58,6 +104,7 @@ export class FacturaComponent implements OnInit, OnDestroy {
         () => this.onError()
       );
   }
+
 
   ngOnInit(): void {
     // console.warn("hoalaaaaaaaaaaaaaa")
@@ -85,29 +132,62 @@ export class FacturaComponent implements OnInit, OnDestroy {
 
   totalGraphicChart(contexto: any, data: any): any{
 
-    data.forEach((element: any, index: number) => {
-      // console.warn(element.fecha)
-      this.fechas.push(element.fecha)
+    data.forEach((element: any) => {
+      this.CantidadNombresFactura.push(element.pedido.productoPedido.cantidad)
+      this.NombresFactura.push(element.pedido.productoPedido.producto.nombre)
 
-      this.lel = {
+
+      this.barChartLabels.push(element.fecha)
+      this.barChartData[0].data?.push(element.pedido.productoPedido.cantidad)
+      // this.barChartData.label
+
+
+      this.productoData = {
         label: element.pedido.productoPedido.producto.nombre,
         data: element.pedido.productoPedido.cantidad,
+        fecha: element.fecha
+        // backgroundColor: 'rgba(255, 99, 132, 0.6)',
       }
-      this.IProductos.push(this.lel)
-      this.NombresFactura.push(element.pedido.productoPedido.producto.nombre)
-      this.CantidadNombresFactura.push(element.pedido.productoPedido.cantidad)
-    });
-    console.warn(this.IProductos)
+      this.groupProducts.push(this.productoData);
 
-    // console.warn(this.fechas)
+    })
+    console.warn(this.groupProducts)
+
 
     this.myBarChart = new Chart(contexto, {
       type: 'bar',
       data: {
-        // labels: ["China", "India", "United States", "Indonesia", "Brazil", "Pakistan", "Nigeria", "Bangladesh", "Russia", "Japan"],
-        labels: this.NombresFactura,
+        labels: this.groupProducts.map(item => new Intl.DateTimeFormat('es-MX', {month: 'long', day: 'numeric'}).format(new Date(item.fecha))),
+        // datasets: this.groupProducts.map(p => p.data)
+        datasets: [
+          {
+            label: "Producto",
+            data: this.groupProducts.map(p => p.data),
+            backgroundColor: ['red', 'green', 'yellow', 'blue', 'orange'],
+          }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Productos ventidos en el dia',
+          fontSize: 30,
+          padding: 30,
+          fontColor: '#000'
+        },
+        // legend: {
+        //   // labels: [0] = this.groupProducts.map(p => p),
+        // }
+      }
+
+    });
+
+
+  }
+/*
+        /*
         datasets: [{
           label: 'Productos',
+          // data: [],
           data: this.CantidadNombresFactura,
           backgroundColor: [
             'rgba(255, 99, 132, 0.6)',
@@ -125,8 +205,9 @@ export class FacturaComponent implements OnInit, OnDestroy {
         },
       ]
 
+
         // Barra inferior horizontal
-        /*
+
         labels: this.fechas,
         datasets: [
           {
@@ -134,8 +215,8 @@ export class FacturaComponent implements OnInit, OnDestroy {
             data:[this.IProductos]
 
           }
-        ]*/
-        /*
+        ]
+
         datasets:[
           {
             label: 'Producto 1',
@@ -152,12 +233,9 @@ export class FacturaComponent implements OnInit, OnDestroy {
             backgroundColor: 'yellow',
             data: [1,20, 50, 80],
           },
-        ],*/
-      },
+        ],
+*/
 
-    });
-
-  }
 
   renderChart(data: any): any{
     this.grafica = document.querySelector('#chartjs');

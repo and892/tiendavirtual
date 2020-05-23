@@ -1,0 +1,16 @@
+<!-- <div><a [routerLink]="['/producto', producto.id, 'view']">{{ producto.id }}</a></div>
+<div>{{ producto.nombre }}</div>
+<div>{{ producto.descripcion }}</div>
+<div>{{ producto.precio }}</div>
+<div>{{ producto.talla }}</div>
+<div>
+    <a *ngIf="producto.image" (click)="openFile(producto.imageContentType, producto.image)">
+        <img [src]="'data:' + producto.imageContentType + ';base64,' + producto.image" style="max-height: 30px;" alt="producto image"/>
+    </a>
+    <span *ngIf="producto.image">{{ producto.imageContentType }}, {{ byteSize(producto.image) }}</span>
+</div>
+<div>
+    <div *ngIf="producto.productoCatergoria">
+        <a [routerLink]="['/producto-categoria', producto.productoCatergoria?.id, 'view']" >{{ producto.productoCatergoria?.id }}</a>
+    </div>
+</div> -->

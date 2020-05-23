@@ -5,9 +5,10 @@
 Navbar
 ========================================================================== */
 
+
 .navbar-version {
   font-size: 0.65em;
-  color: $navbar-dark-color;
+  // color: $navbar-dark-color;
 }
 
 .profile-image {
@@ -39,4 +40,11 @@ Logo styles
   vertical-align: middle;
   background: url('../../../content/images/logo-jhipster.png') no-repeat center center;
   background-size: contain;
+}
+
+.btnIngresar{
+  background: linear-gradient(  #e17055, #d63031);
+  border-radius: 13px;
+  font-weight: bold;
+  color: #fff;
 }

@@ -8,11 +8,14 @@
     "node_modules"
   ],
   "dependencies": {
+    "@angular/animations": "9.0.4",
+    "@angular/cdk": "^9.2.4",
     "@angular/common": "9.0.4",
     "@angular/compiler": "9.0.4",
     "@angular/core": "9.0.4",
     "@angular/forms": "9.0.4",
     "@angular/localize": "9.0.4",
+    "@angular/material": "^9.2.4",
     "@angular/platform-browser": "9.0.4",
     "@angular/platform-browser-dynamic": "9.0.4",
     "@angular/router": "9.0.4",
@@ -26,6 +29,7 @@
     "chart.js": "^2.9.3",
     "moment": "2.24.0",
     "ng-jhipster": "0.12.0",
+    "ng2-charts": "^2.3.2",
     "ngx-cookie": "4.0.2",
     "ngx-infinite-scroll": "8.0.1",
     "ngx-webstorage": "5.0.0",

@@ -9,6 +9,10 @@ import { AccountService } from 'app/core/auth/account.service';
 import { LoginModalService } from 'app/core/login/login-modal.service';
 import { LoginService } from 'app/core/login/login.service';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
+import { CartService } from './../../core/services/cart.service';
+// import {} from '@angular/material/toolbar'
+// import {MaterialModule} from './../../material/material.module'
+
 
 @Component({
   selector: 'jhi-navbar',
@@ -21,6 +25,7 @@ export class NavbarComponent implements OnInit {
   languages = LANGUAGES;
   swaggerEnabled?: boolean;
   version: string;
+  total = 0;
 
   constructor(
     private loginService: LoginService,
@@ -29,9 +34,15 @@ export class NavbarComponent implements OnInit {
     private accountService: AccountService,
     private loginModalService: LoginModalService,
     private profileService: ProfileService,
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) {
     this.version = VERSION ? (VERSION.toLowerCase().startsWith('v') ? VERSION : 'v' + VERSION) : '';
+    this.cartService.cart$.subscribe(productos => {
+      console.warn(productos)
+      console.warn(productos.length)
+      this.total= productos.length;
+    })
   }
 
   ngOnInit(): void {

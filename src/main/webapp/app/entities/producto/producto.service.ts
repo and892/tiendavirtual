@@ -27,6 +27,10 @@ export class ProductoService {
     return this.http.get<IProducto>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  findAll(): Observable<EntityResponseType> {
+    return this.http.get<IProducto>(`${this.resourceUrl}`, { observe: 'response' });
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<IProducto[]>(this.resourceUrl, { params: options, observe: 'response' });

@@ -5,9 +5,9 @@ import { AlertComponent } from './alert/alert.component';
 import { AlertErrorComponent } from './alert/alert-error.component';
 import { LoginModalComponent } from './login/login.component';
 import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
-
+import {MaterialModule} from './../material/material.module'
 @NgModule({
-  imports: [TiendavirtualSharedLibsModule],
+  imports: [TiendavirtualSharedLibsModule, MaterialModule],
   declarations: [FindLanguageFromKeyPipe, AlertComponent, AlertErrorComponent, LoginModalComponent, HasAnyAuthorityDirective],
   entryComponents: [LoginModalComponent],
   exports: [
@@ -16,7 +16,8 @@ import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
     AlertComponent,
     AlertErrorComponent,
     LoginModalComponent,
-    HasAnyAuthorityDirective
+    HasAnyAuthorityDirective,
+    MaterialModule
   ]
 })
 export class TiendavirtualSharedModule {}

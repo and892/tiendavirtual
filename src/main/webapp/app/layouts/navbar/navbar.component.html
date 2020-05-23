@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark navbar-expand-md bg-dark">
+<nav class="navbar navbar-light navbar-expand-md bg-light">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
         <span class="logo-img"></span>
         <span jhiTranslate="global.title" class="navbar-title">Tiendavirtual</span> <span class="navbar-version">{{ version }}</span>
@@ -156,13 +156,15 @@
                     </li>
                 </ul>
             </li>
-            <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
+
+            <li ngbDropdown class="nav-item  dropdown pointer " display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link btnIngresar dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
                     <span *ngIf="!getImageUrl()">
-                        <fa-icon icon="user"></fa-icon>
-                        <span jhiTranslate="global.menu.account.main">
-                            Account
-                        </span>
+                        <span class="btnIngresar">Ingresar</span>
+                        <!--<fa-icon icon="user"></fa-icon>-->
+                        <!--<span jhiTranslate="global.menu.account.main">
+                            Ingresar
+                        </span>-->
                     </span>
                     <span *ngIf="getImageUrl()">
                         <img [src]="getImageUrl()" class="profile-image rounded-circle" alt="Avatar">
@@ -200,6 +202,17 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a mat-raised-button matBadge="4" matBadgeColor="warn">
+                    Total: {{total}}
+                    Carrito
+                    <!-- <span>
+
+                        <span>Carrito</span>
+                    </span> -->
+                </a>
             </li>
         </ul>
     </div>

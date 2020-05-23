@@ -1,0 +1,29 @@
+.hola{
+    background: #000;
+}
+.buscador{
+  max-width: 40%;
+}
+
+.contenedorProductos{
+  width: 70%;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  margin: 0 auto;
+}
+
+.contenedorProductos__productos{
+  margin-bottom: 20px;
+}
+
+.prodTitulo> a{
+  color: #000 !important;
+  // font-weight: bold;
+  // font-size: 1.3rem;
+}
+.prodPrecio{
+  color: #000 !important;
+  font-weight: bold;
+}

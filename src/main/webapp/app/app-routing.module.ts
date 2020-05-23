@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {RouterModule } from '@angular/router';
 import { errorRoute } from './layouts/error/error.route';
 import { navbarRoute } from './layouts/navbar/navbar.route';
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
@@ -13,6 +13,10 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
   imports: [
     RouterModule.forRoot(
       [
+        {
+          path: 'user/productos',
+          loadChildren: () => import('./layout-user/layout-user.module').then(m => m.LayoutUserModule)
+        },
         {
           path: 'admin',
           data: {

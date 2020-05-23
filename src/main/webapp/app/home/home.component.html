@@ -1,9 +1,41 @@
-<div class="row">
+<!-- <button routerLink="user/productos">
+    Ingresar
+</button> -->
+
+<!-- <jhi-producto-user></jhi-producto-user> -->
+<!-- <div class="container" > -->
+    <div class="banner imagen1">
+        <div class="opacidad">
+            <div class="opacidad2">
+                <div class="contenedorInfo">
+                    <p>Bienvenido</p>
+                    <h5>Revisa algunos de nuestro productos</h5>
+                    <button class="btn btn-light" routerLink="user/productos">Ir a los productos</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center m-5">Algunas de las categorias que tenemos para ti</h2>
+    <div class="contenedorCategoriasLayout">
+        <div *ngFor="let categoria of categorias">
+            <div class="contenedorCategoria">
+                {{categoria.nombre | uppercase}}
+            </div>
+        </div>
+    </div>
+<!-- </div> -->
+
+
+
+
+<!-- <div class="row">
     <div class="col-md-3">
         <span class="hipster img-fluid rounded"></span>
     </div>
 
     <div class="col-md-9">
+        <button routerLink="/user/productos">Ingresar</button>
         <h1 class="display-4" jhiTranslate="home.title">Welcome, Java Hipster!</h1>
 
         <p class="lead" jhiTranslate="home.subtitle">This is your homepage</p>
@@ -41,4 +73,4 @@
             <span jhiTranslate="home.like">If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer" jhiTranslate="home.github">GitHub</a>!
         </p>
     </div>
-</div>
+</div> -->

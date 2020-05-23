@@ -21,3 +21,104 @@ Main page styles
     background-size: contain;
   }
 }
+
+.hola {
+  background: #000;
+}
+.buscador {
+  max-width: 40%;
+}
+
+.contenedorProductos {
+  width: 70%;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  margin: 0 auto;
+}
+
+.contenedorProductos__productos {
+  margin-bottom: 20px;
+}
+
+.prodTitulo > a {
+  color: #000 !important;
+  // font-weight: bold;
+  // font-size: 1.3rem;
+}
+.prodPrecio {
+  color: #000 !important;
+  font-weight: bold;
+}
+
+.contenedorCategoriasLayout {
+  // width: 80%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  // border:1px solid #000;
+  text-align: center;
+  margin: 0 auto;
+  // grid-gap: 20px;
+  margin-bottom: 30px;
+}
+
+.contenedorCategoria {
+  background-color: #55efc4;
+  // display: inline-flex;
+  color: black;
+  padding: 80px 40px;
+  font-weight: bold;
+  // border-radius: 25px;
+}
+.contenedorCategoria:hover{
+  background-color: rgba(0, 184, 148,1.0);
+}
+.banner {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(238, 251, 254);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .contenedorInfo {
+    color: #fff;
+    text-align: center;
+    p {
+      font-weight: bold;
+      font-size: 2.8em;
+      font-family: Poppins-SemiBold, Helvetica, Arial, sans-serif;
+    }
+    h5 {
+      margin-bottom: 28px;
+    }
+    // .titutoBienvenido{
+    //   font-size: 2.8em;
+    // }
+  }
+}
+.opacidad2 {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.imagen1 {
+  background-image: url(https://cdn.pixabay.com/photo/2016/11/30/12/29/bicycle-1872682_960_720.jpg);
+}
+.opacidad {
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
