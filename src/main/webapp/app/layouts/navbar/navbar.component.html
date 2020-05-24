@@ -158,13 +158,13 @@
             </li>
 
             <li ngbDropdown class="nav-item  dropdown pointer " display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link btnIngresar dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
                     <span *ngIf="!getImageUrl()">
-                        <span class="btnIngresar">Ingresar</span>
-                        <!--<fa-icon icon="user"></fa-icon>-->
-                        <!--<span jhiTranslate="global.menu.account.main">
+                        <!-- <span class="">Ingresar</span> -->
+                        <fa-icon icon="user"></fa-icon>
+                        <span jhiTranslate="global.menu.account.main">
                             Ingresar
-                        </span>-->
+                        </span>
                     </span>
                     <span *ngIf="getImageUrl()">
                         <img [src]="getImageUrl()" class="profile-image rounded-circle" alt="Avatar">
@@ -204,10 +204,14 @@
                 </ul>
             </li>
 
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a mat-raised-button matBadge="4" matBadgeColor="warn">
-                    Total: {{total}}
-                    Carrito
+            <li class="nav-item carrito" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="/order">
+                <a matBadgeColor="warn" >
+                    <!-- <fa-icon icon=""></fa-icon> -->
+
+                    <p class="carrito__name">Carrito</p>
+                    <div class="carrito__cantidadItems">
+                        <p>{{total$ | async}}</p>
+                    </div>
                     <!-- <span>
 
                         <span>Carrito</span>
@@ -217,3 +221,37 @@
         </ul>
     </div>
 </nav>
+<style>
+    .carrito{
+        background-color: rgb(63,81,182);
+        max-height: 40px;
+        border-radius: 13px;
+        color: #fff;
+        padding-right: 10px;
+        padding: 0px 10px;
+        /* display: grid;
+        grid-template-columns: 1fr 1fr; */
+    }
+    .carrito__cantidadItems{
+        background-color: rgb(242,67,55);
+        width: 31px;
+        height:31px;
+        color: #fff;
+        border-radius: 50%;
+        position: absolute;
+        /* margin-top: -8px; */
+        right: 0px;
+        top: 5px;
+    }
+    .carrito__name{
+        margin-top: 8px;
+    }
+    .carrito__cantidadItems p{
+        /* margin-top: -2px; */
+        margin-left: 11px;
+        margin-top:4px;
+    }
+    .carrito:hover{
+        background-color: rgb(41, 54, 128);
+    }
+</style>

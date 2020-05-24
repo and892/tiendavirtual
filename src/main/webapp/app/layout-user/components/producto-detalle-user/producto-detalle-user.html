@@ -1,3 +1,31 @@
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-4 ">
+            <img class="img-thumbnail" [src]="'data:' + producto.imageContentType + ';base64,' + producto.image"  alt="producto image"/>
+        </div>
+        <div class="col-8 ">
+            <p><b class="font-weight-bold">Nombre:</b> {{producto.nombre}}</p>
+            <p><b class="font-weight-bold">Descripción:</b> {{producto.descripcion}}</p>
+            <p><b class="font-weight-bold">Precio:</b> {{producto.precio | currency: 'COP'}}</p>
+            <!-- <p>Nombre: {{producto.nombre}}</p> -->
+        </div>
+    </div>
+  </div>
+
+
+<!-- <div>
+    <a *ngIf="producto.image" (click)="openFile(producto.imageContentType, producto.image)">
+        <img [src]="'data:' + producto.imageContentType + ';base64,' + producto.image" style="max-height: 30px;" alt="producto image"/>
+    </a>
+  </div>
+  <div>
+    <ul>
+      <li>Nombre: {{ producto.titulo }}</li>
+      <li>Precio: {{ producto.precio | currency}}</li>
+    </ul>
+    <p>{{ producto.descripcion }}</p>
+  </div> -->
 <!-- <div><a [routerLink]="['/producto', producto.id, 'view']">{{ producto.id }}</a></div>
 <div>{{ producto.nombre }}</div>
 <div>{{ producto.descripcion }}</div>

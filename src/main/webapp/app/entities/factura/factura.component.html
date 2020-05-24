@@ -1,105 +1,110 @@
 
+<div class="container-fluid p-5">
+    <div>
 
-<div>
-    <canvas id="chartjs" width="800" height="400"></canvas>
-    <!-- <canvas baseChart
-        [datasets]="barChartData"
-        [labels]="barChartLabels"
-        [options]="barChartOptions"
-        [plugins]="barChartPlugins"
-        [legend]="barChartLegend"
-        [chartType]="barChartType">
-  </canvas> -->
 
-    <h2 id="page-heading">
-        <span jhiTranslate="tiendavirtualApp.factura.home.title">Facturas</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-factura" [routerLink]="['/factura/new']">
-            <fa-icon icon="plus"></fa-icon>
-            <span  jhiTranslate="tiendavirtualApp.factura.home.createLabel">
-            Create a new Factura
-            </span>
-        </button>
-    </h2>
+        <h2 id="page-heading">
+            <span jhiTranslate="tiendavirtualApp.factura.home.title">Facturas</span>
 
-    <jhi-alert-error></jhi-alert-error>
+            <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-factura" [routerLink]="['/factura/new']">
+                <fa-icon icon="plus"></fa-icon>
+                <span  jhiTranslate="tiendavirtualApp.factura.home.createLabel">
+                Create a new Factura
+                </span>
+            </button>
+        </h2>
 
-    <jhi-alert></jhi-alert>
+        <jhi-alert-error></jhi-alert-error>
 
-    <div class="alert alert-warning" id="no-result" *ngIf="facturas?.length === 0">
-        <span jhiTranslate="tiendavirtualApp.factura.home.notFound">No facturas found</span>
-    </div>
+        <jhi-alert></jhi-alert>
 
-    <div class="table-responsive" id="entities" *ngIf="facturas?.length > 0">
-        <table class="table table-striped" aria-describedby="page-heading">
-            <thead>
-                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="fecha"><span jhiTranslate="tiendavirtualApp.factura.fecha">Fecha</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="detalles"><span jhiTranslate="tiendavirtualApp.factura.detalles">Detalles</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="estado"><span jhiTranslate="tiendavirtualApp.factura.estado">Estado</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="metodoDePago"><span jhiTranslate="tiendavirtualApp.factura.metodoDePago">Metodo De Pago</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="fechaDePago"><span jhiTranslate="tiendavirtualApp.factura.fechaDePago">Fecha De Pago</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="montoPagado"><span jhiTranslate="tiendavirtualApp.factura.montoPagado">Monto Pagado</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="cliente.id"><span jhiTranslate="tiendavirtualApp.factura.cliente">Cliente</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="pedido.id"><span jhiTranslate="tiendavirtualApp.factura.pedido">Pedido</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let factura of facturas ;trackBy: trackId">
-                    <td><a [routerLink]="['/factura', factura.id, 'view']">{{ factura.id }}</a></td>
-                    <td>{{ factura.fecha | date:'medium' }}</td>
-                    <td>{{ factura.detalles }}</td>
-                    <td jhiTranslate="{{ 'tiendavirtualApp.FacturaEstado.' + factura.estado }}">{{ factura.estado }}</td>
-                    <td jhiTranslate="{{ 'tiendavirtualApp.MetodoPago.' + factura.metodoDePago }}">{{ factura.metodoDePago }}</td>
-                    <td>{{ factura.fechaDePago | date:'medium' }}</td>
-                    <td>{{ factura.montoPagado }}</td>
-                    <td>
-                        <div *ngIf="factura.cliente">
-                            <a [routerLink]="['/cliente', factura.cliente?.id, 'view']" >{{ factura.cliente?.id }}</a>
-                        </div>
-                    </td>
-                    <td>
-                        <div *ngIf="factura.pedido">
-                            <a [routerLink]="['/pedido', factura.pedido?.id, 'view']" >{{ factura.pedido?.id }}</a>
-                        </div>
-                    </td>
-                    <td class="text-right">
-                        <div class="btn-group">
-                            <button type="submit"
-                                    [routerLink]="['/factura', factura.id, 'view']"
-                                    class="btn btn-info btn-sm">
-                                <fa-icon icon="eye"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                            </button>
-
-                            <button type="submit"
-                                    [routerLink]="['/factura', factura.id, 'edit']"
-                                    class="btn btn-primary btn-sm">
-                                <fa-icon icon="pencil-alt"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                            </button>
-
-                            <button type="submit" (click)="delete(factura)"
-                                    class="btn btn-danger btn-sm">
-                                <fa-icon icon="times"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div *ngIf="facturas?.length > 0">
-        <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        <div class="alert alert-warning" id="no-result" *ngIf="facturas?.length === 0">
+            <span jhiTranslate="tiendavirtualApp.factura.home.notFound">No facturas found</span>
         </div>
 
-        <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        <div class="table-responsive" id="entities" *ngIf="facturas?.length > 0">
+            <table class="table table-striped" aria-describedby="page-heading">
+                <thead>
+                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                        <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="fecha"><span jhiTranslate="tiendavirtualApp.factura.fecha">Fecha</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="detalles"><span jhiTranslate="tiendavirtualApp.factura.detalles">Detalles</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="estado"><span jhiTranslate="tiendavirtualApp.factura.estado">Estado</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="metodoDePago"><span jhiTranslate="tiendavirtualApp.factura.metodoDePago">Metodo De Pago</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="fechaDePago"><span jhiTranslate="tiendavirtualApp.factura.fechaDePago">Fecha De Pago</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="montoPagado"><span jhiTranslate="tiendavirtualApp.factura.montoPagado">Monto Pagado</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="cliente.id"><span jhiTranslate="tiendavirtualApp.factura.cliente">Cliente</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"  jhiSortBy="pedido.id"><span jhiTranslate="tiendavirtualApp.factura.pedido">Pedido</span> <fa-icon icon="sort"></fa-icon></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let factura of facturas ;trackBy: trackId">
+                        <td><a [routerLink]="['/factura', factura.id, 'view']">{{ factura.id }}</a></td>
+                        <td>{{ factura.fecha | date:'medium' }}</td>
+                        <td>{{ factura.detalles }}</td>
+                        <td jhiTranslate="{{ 'tiendavirtualApp.FacturaEstado.' + factura.estado }}">{{ factura.estado }}</td>
+                        <td jhiTranslate="{{ 'tiendavirtualApp.MetodoPago.' + factura.metodoDePago }}">{{ factura.metodoDePago }}</td>
+                        <td>{{ factura.fechaDePago | date:'medium' }}</td>
+                        <td>{{ factura.montoPagado }}</td>
+                        <td>
+                            <div *ngIf="factura.cliente">
+                                <a [routerLink]="['/cliente', factura.cliente?.id, 'view']" >{{ factura.cliente?.id }}</a>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngIf="factura.pedido">
+                                <a [routerLink]="['/pedido', factura.pedido?.id, 'view']" >{{ factura.pedido?.id }}</a>
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div class="btn-group">
+                                <button type="submit"
+                                        [routerLink]="['/factura', factura.id, 'view']"
+                                        class="btn btn-info btn-sm">
+                                    <fa-icon icon="eye"></fa-icon>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                </button>
+
+                                <button type="submit"
+                                        [routerLink]="['/factura', factura.id, 'edit']"
+                                        class="btn btn-primary btn-sm">
+                                    <fa-icon icon="pencil-alt"></fa-icon>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                </button>
+
+                                <button type="submit" (click)="delete(factura)"
+                                        class="btn btn-danger btn-sm">
+                                    <fa-icon icon="times"></fa-icon>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="facturas?.length > 0">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+            </div>
         </div>
     </div>
+
+    <h2 class="text-center mt-5">Estadisticas</h2>
+    <div class="canvasito">
+        <canvas id="chartjs" width="500" height="500"></canvas>
+    </div>
+    <style>
+        .canvasito{
+            max-width: 50%;
+            margin: 0 auto;
+        }
+    </style>
 </div>

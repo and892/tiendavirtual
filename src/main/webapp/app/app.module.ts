@@ -17,11 +17,10 @@ import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
 // import { ProductoUserComponent } fro./layout-user/components/producto-user/producto-user.componentent';
 import { LayoutUserModule } from './layout-user/layout-user.module';
-// import { ProductoUserComponent } from './producto-user/producto-user.component';
-// ./layout-user/filtro.pipe
-// import { ProductoUserComponent } from './layout-user/components/producto-user/producto-user.component';
-// import { CategoriasProductosUserComponent } from './categorias-productos-user/categorias-productos-user.component';
 
+// import { CategoriasProductosUserComponent } from './categorias-productos-user/categorias-productos-user.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { MaterialModule } from './material/material.module';
 
 
 @NgModule({
@@ -34,6 +33,8 @@ import { LayoutUserModule } from './layout-user/layout-user.module';
     TiendavirtualEntityModule,
     TiendavirtualAppRoutingModule,
     LayoutUserModule,
+    BrowserAnimationsModule,
+    MaterialModule
     // HttpClientModule
   ],
   declarations: [

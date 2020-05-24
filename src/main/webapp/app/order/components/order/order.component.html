@@ -1,0 +1,79 @@
+
+<div class="container">
+
+    <mat-horizontal-stepper>
+        <mat-step>
+            <ng-template matStepLabel>Tus productos</ng-template>
+            <div *ngIf="(productos$ | async) as productos">
+                <p class="alert alert-warning" role="alert" *ngIf="productos.length === 0">No hay productos</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Nombre del producto</th>
+                            <th scope="col">Precio</th>
+                        </tr>
+                    </thead>
+                </table>
+                <div class="row" *ngFor="let producto of productos">
+                  <div class="col-xs-12 col-sm-2 col-md-2">
+                    <div class="box">
+                        <img [src]="'data:' + producto.imageContentType + ';base64,' + producto.image" class="card-img-top"  alt="producto image"/>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-5 col-md-5">
+                    <div class="box">
+                      {{ producto.nombre }}
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-5 col-md-5">
+                    <div class="box">
+                      {{ producto.precio  | currency: 'COP'}}
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Datos Personales</ng-template>
+            <form>
+                <div class="form-group">
+                    <label for="" class="text-center">Ingresa tus datos personales</label>
+                    <input type="text" class="form-control mt-2" placeholder="Nombre del cliente">
+                    <input type="text" class="form-control mt-2" placeholder="Numero telefonico">
+                    <input type="text" class="form-control mt-2" placeholder="Correo">
+                    <input type="text" class="form-control mt-2" placeholder="Dirección">
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Pago</ng-template>
+            <form>
+                <div class="form-group">
+
+                    <label for="pago">Método de pago:</label>
+                    <select id="pago" class="form-control">
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Tarjeta">Tarjeta de Credito</option>
+                        <option value="Tarjeta">Tarjeta de Debito</option>
+                    </select>
+                </div>
+            </form>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>
+
+<script>
+    // mat-step-icon mat-step-icon-state-number mat-step-icon-selected
+    const a = document.querySelector("mat-icon");
+    a.style.display = 'none'
+
+</script>
+<style>
+    .mat-step-label {
+  background-color: blue;
+  color: #ffffff;
+}
+
+</style>

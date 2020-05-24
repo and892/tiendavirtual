@@ -12,7 +12,7 @@ import { FacturaService } from './factura.service';
 import { FacturaDeleteDialogComponent } from './factura-delete-dialog.component';
 // import {ImasVendidos} from './masVendidos.model';
 
-import {Chart, ChartOptions,ChartType, ChartDataSets } from 'chart.js';
+import {Chart, ChartOptions,ChartType,ChartTooltipItem, ChartData, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 
 @Component({
@@ -40,7 +40,7 @@ export class FacturaComponent implements OnInit, OnDestroy {
   groupProducts: any[] = [];
   productoData: any;
 
-  dringlichkeiten: any[] = []
+
 
 
   // Charts
@@ -135,13 +135,8 @@ export class FacturaComponent implements OnInit, OnDestroy {
     data.forEach((element: any) => {
       this.CantidadNombresFactura.push(element.pedido.productoPedido.cantidad)
       this.NombresFactura.push(element.pedido.productoPedido.producto.nombre)
-
-
       this.barChartLabels.push(element.fecha)
-      this.barChartData[0].data?.push(element.pedido.productoPedido.cantidad)
-      // this.barChartData.label
-
-
+      this.barChartData[0].data?.push(element.pedido.productoPedido.cantidad+element.pedido.productoPedido.producto.nombre)
       this.productoData = {
         label: element.pedido.productoPedido.producto.nombre,
         data: element.pedido.productoPedido.cantidad,
@@ -151,20 +146,22 @@ export class FacturaComponent implements OnInit, OnDestroy {
       this.groupProducts.push(this.productoData);
 
     })
-    console.warn(this.groupProducts)
 
+    console.warn(this.groupProducts)
 
     this.myBarChart = new Chart(contexto, {
       type: 'bar',
       data: {
-        labels: this.groupProducts.map(item => new Intl.DateTimeFormat('es-MX', {month: 'long', day: 'numeric'}).format(new Date(item.fecha))),
+        labels: this.groupProducts.map(item => new Intl.DateTimeFormat('es-MX', {month: 'long', day: 'numeric'}).format(new Date(item.fecha)) + " - "  +item.label),
         // datasets: this.groupProducts.map(p => p.data)
-        datasets: [
+        datasets:
+         [
           {
             label: "Producto",
-            data: this.groupProducts.map(p => p.data),
-            backgroundColor: ['red', 'green', 'yellow', 'blue', 'orange'],
-          }]
+            data: this.groupProducts.map(p => p.data ),
+            backgroundColor: ['red', 'green', 'yellow', 'blue', 'orange', '#74b9ff', '#d63031', '#fdcb6e', '#a29bfe', '#55efc4'],
+          }
+        ]
       },
       options: {
         title: {
@@ -174,67 +171,47 @@ export class FacturaComponent implements OnInit, OnDestroy {
           padding: 30,
           fontColor: '#000'
         },
-        // legend: {
-        //   // labels: [0] = this.groupProducts.map(p => p),
-        // }
+
+        tooltips:{
+          titleFontSize: 18,
+          xPadding: 10,
+          yPadding: 10,
+          mode:'label',
+          callbacks:{
+
+            label(tooltipItem: ChartTooltipItem, info: ChartData):any{
+              console.warn(tooltipItem)
+              console.warn(tooltipItem.label)
+              console.warn(info)
+              let cadena2: any;
+              let cadena3: any;
+
+              for (let i = 0; i < tooltipItem.label!.length; i++) {
+                  if (tooltipItem.label![i] === '-'){
+                      cadena2 = tooltipItem.label!.slice(i+2,tooltipItem.label!.length)
+                  }
+              }
+              for (let i = 0; i < tooltipItem.label!.length; i++) {
+                  if (tooltipItem.label![i] === '-'){
+                      cadena3 = tooltipItem.label!.slice(0, i)
+                  }
+              }
+
+              console.warn(cadena3)
+              return tooltipItem.label = `Productos: ${cadena2} \n Cantidades: ${tooltipItem.yLabel!}`;
+
+
+
+            },
+
+          }
+        }
+
       }
 
     });
 
-
   }
-/*
-        /*
-        datasets: [{
-          label: 'Productos',
-          // data: [],
-          data: this.CantidadNombresFactura,
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(153, 102, 255, 0.6)',
-            'rgba(255, 159, 64, 0.6)',
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(153, 102, 255, 0.6)'
-          ]
-        },
-      ]
-
-
-        // Barra inferior horizontal
-
-        labels: this.fechas,
-        datasets: [
-          {
-            label: this.IProductos,
-            data:[this.IProductos]
-
-          }
-        ]
-
-        datasets:[
-          {
-            label: 'Producto 1',
-            backgroundColor: 'red',
-            data: [1,20, 30, 50],
-          },
-          {
-            label: 'Producto 2',
-            backgroundColor: 'green',
-            data: [1,10, 20, 30],
-          },
-          {
-            label: 'Producto 3',
-            backgroundColor: 'yellow',
-            data: [1,20, 50, 80],
-          },
-        ],
-*/
 
 
   renderChart(data: any): any{

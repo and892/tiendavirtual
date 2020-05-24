@@ -31,7 +31,7 @@ import {ProductoUserComponent} from './components/producto-user/producto-user.co
   ],
   exports: [
     LayoutUserComponent,
-
+    FiltroPipe
   ]
 })
 export class LayoutUserModule{ }

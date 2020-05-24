@@ -16,7 +16,7 @@ import { productoRoute } from './producto.route';
     ProductoDetailComponent,
     ProductoUpdateComponent,
     ProductoDeleteDialogComponent,
-    // FiltroPipe
+
   ],
   exports: [ProductoComponent],
   entryComponents: [ProductoDeleteDialogComponent]

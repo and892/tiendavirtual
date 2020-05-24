@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import {RouterModule } from '@angular/router';
-import { errorRoute } from './layouts/error/error.route';
+// import { errorRoute } from './layouts/error/error.route';
 import { navbarRoute } from './layouts/navbar/navbar.route';
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 import { Authority } from 'app/shared/constants/authority.constants';
 
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 
-const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
+const LAYOUT_ROUTES = [navbarRoute]
 
 @NgModule({
   imports: [
@@ -15,7 +15,11 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
       [
         {
           path: 'user/productos',
-          loadChildren: () => import('./layout-user/layout-user.module').then(m => m.LayoutUserModule)
+          loadChildren: () => import('./layout-user//layout-user-routing.module').then(m => m.LayoutUserRoutingModule)
+        },
+        {
+          path:'order',
+          loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
         },
         {
           path: 'admin',

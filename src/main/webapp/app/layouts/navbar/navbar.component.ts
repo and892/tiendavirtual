@@ -10,6 +10,8 @@ import { LoginModalService } from 'app/core/login/login-modal.service';
 import { LoginService } from 'app/core/login/login.service';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 import { CartService } from './../../core/services/cart.service';
+import {map} from 'rxjs/operators';
+import { Observable } from 'rxjs';
 // import {} from '@angular/material/toolbar'
 // import {MaterialModule} from './../../material/material.module'
 
@@ -25,7 +27,7 @@ export class NavbarComponent implements OnInit {
   languages = LANGUAGES;
   swaggerEnabled?: boolean;
   version: string;
-  total = 0;
+  total$: Observable<number>;
 
   constructor(
     private loginService: LoginService,
@@ -38,11 +40,12 @@ export class NavbarComponent implements OnInit {
     private cartService: CartService
   ) {
     this.version = VERSION ? (VERSION.toLowerCase().startsWith('v') ? VERSION : 'v' + VERSION) : '';
-    this.cartService.cart$.subscribe(productos => {
-      console.warn(productos)
-      console.warn(productos.length)
-      this.total= productos.length;
-    })
+
+    this.total$ = this.cartService.cart$
+    .pipe(
+      map(productos => productos.length)
+    );
+
   }
 
   ngOnInit(): void {

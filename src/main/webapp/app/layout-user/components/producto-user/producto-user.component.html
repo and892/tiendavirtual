@@ -1,15 +1,12 @@
 <!-- <a *ngIf="producto.image" (click)="openFile(producto.imageContentType, producto.image)"> -->
-<img [src]="'data:' + producto.imageContentType + ';base64,' + producto.image" style="max-height: 130px;" alt="producto image"/>
-<br>
-{{producto.nombre}}
-<!-- </a> -->
-<!-- <img [src]="producto.imageContentType" style="max-height: 130px;" alt="producto image"/> -->
-<div class="prodPrecio">{{producto.precio | currency: 'COP'}}</div>
+<img [src]="'data:' + producto.imageContentType + ';base64,' + producto.image" class="card-img-top"  alt="producto image"/>
+<!-- <br> -->
+<div class="card-body">
+    <p class="text-uppercase">{{producto.nombre}}</p>
+    <div class="prodPrecio font-weight-bold">{{producto.precio | currency: 'COP'}}</div>
+    <div class="">{{producto.descripcion }}</div>
+    <br>
 
-<!-- <div class="" style="color: #000;">
-        {{producto.nombre | uppercase}}
-</div> -->
-
-<div class="">{{producto.descripcion }}</div>
-<button (click)="anadirCarrito()" class="btn btn-primary mt-3">Añadir al Carrito</button>
-<!-- <p>Holaaaaa</p>-->
+    <button  class="btn btn-link" routerLink="/user/productos/{{producto.id}}">Ver detalles</button>
+    <button (click)="anadirCarrito()" class="btn btn-primary mt-3">Añadir al Carrito</button>
+</div>

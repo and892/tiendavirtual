@@ -7,7 +7,8 @@
 <br>
 <div class="contenedorProductos">
 
-    <div class="contenedorProductos__productos" *ngFor="let producto of productos | filtro: filtroPost">
+    <!-- <div class="contenedorProductos__productos" *ngFor="let producto of productos | filtro: filtroPost"> -->
+    <div class="card" style="width: 18rem;" *ngFor="let producto of productos | filtro: filtroPost">
       <!-- <jhi-producto-user></jhi-producto-user> -->
       <jhi-producto-user (productoSeleccionado)="clickProduct($event)" [producto]="producto"></jhi-producto-user>
     </div>

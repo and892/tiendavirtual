@@ -111,6 +111,7 @@ Generic styles
   cursor: pointer;
 }
 
+
 /* ==========================================================================
 Custom alerts for notification
 ========================================================================== */
@@ -193,3 +194,16 @@ ui bootstrap tweaks
 }
 
 /* jhipster-needle-scss-add-main JHipster will add new css style */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 576px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
