@@ -10,6 +10,7 @@ export interface IProducto {
   imageContentType?: string;
   image?: any;
   productoCatergoria?: IProductoCategoria;
+  quantity?: number;
 }
 
 export class Producto implements IProducto {

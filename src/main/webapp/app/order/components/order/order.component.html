@@ -2,9 +2,10 @@
 <div class="container">
 
     <mat-horizontal-stepper>
-        <mat-step>
+        <mat-step class="asd">
             <ng-template matStepLabel>Tus productos</ng-template>
-            <div *ngIf="(productos$ | async) as productos">
+
+            <div *ngIf="(productos$ | async | groupBy ) as productos">
                 <p class="alert alert-warning" role="alert" *ngIf="productos.length === 0">No hay productos</p>
                 <table class="table">
                     <thead>
@@ -12,38 +13,61 @@
                             <th scope="col">Imagen</th>
                             <th scope="col">Nombre del producto</th>
                             <th scope="col">Precio</th>
+                            <th scope="col">Cantidad</th>
                         </tr>
                     </thead>
+                    <tbody *ngFor="let producto of productos">
+                        <tr>
+                            <td class="img-thumbnail" style="max-width: 100px;">
+                                <img [src]="'data:' + producto.imageContentType + ';base64,' + producto.image" class="card-img-top"  alt="producto image"/>
+                            </td>
+                            <td>
+                                {{ producto.nombre }}
+                            </td>
+                            <td>
+                                {{ producto.precio  | currency: 'COP' }}
+                            </td>
+                            <td class="font-weight-bold">
+                                {{producto.quantity}}
+                            </td>
+                        </tr>
+
+                    </tbody>
                 </table>
-                <div class="row" *ngFor="let producto of productos">
-                  <div class="col-xs-12 col-sm-2 col-md-2">
-                    <div class="box">
-                        <img [src]="'data:' + producto.imageContentType + ';base64,' + producto.image" class="card-img-top"  alt="producto image"/>
-                    </div>
-                  </div>
-                  <div class="col-xs-12 col-sm-5 col-md-5">
-                    <div class="box">
-                      {{ producto.nombre }}
-                    </div>
-                  </div>
-                  <div class="col-xs-12 col-sm-5 col-md-5">
-                    <div class="box">
-                      {{ producto.precio  | currency: 'COP'}}
-                    </div>
-                  </div>
-                </div>
             </div>
 
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Datos Personales</ng-template>
+
             <form>
                 <div class="form-group">
-                    <label for="" class="text-center">Ingresa tus datos personales</label>
+                    <!-- <label for="" class="text-center">Ingresa tus datos personales</label>
                     <input type="text" class="form-control mt-2" placeholder="Nombre del cliente">
-                    <input type="text" class="form-control mt-2" placeholder="Numero telefonico">
-                    <input type="text" class="form-control mt-2" placeholder="Correo">
-                    <input type="text" class="form-control mt-2" placeholder="Dirección">
+                    <input type="text" class="form-control mt-2" placeholder="Numero telefonico"> -->
+                    <!-- <input type="text" class="form-control mt-2" placeholder="Correo">
+                    <input type="text" class="form-control mt-2" placeholder="Dirección"> -->
+                    <input [formControl]="nombreCategoriaField" type="text" class="form-control mt-2" placeholder="nombreCategoriaField">
+                    <input [formControl]="descripcionCategoriaField" type="text" class="form-control mt-2" placeholder="descripcionCategoriaField">
+                    <!-- {{nombreCategoriaField.valid}}, {{nombreCategoriaField.invalid}} -->
+                    <div class="alert alert-danger mt-3" role="alert" *ngIf="nombreCategoriaField.invalid || descripcionCategoriaField.invalid">
+                        Los campos son invalidos.
+                    </div>
+                    <button class="btn btn-primary mt-3" *ngIf="nombreCategoriaField.valid" (click)="saveData()">Guardar Datos</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Pago</ng-template>
+            <form>
+                <div class="form-group">
+
+                    <label for="pago">Método de pago:</label>
+                    <select id="pago" class="form-control">
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Tarjeta">Tarjeta de Credito</option>
+                        <option value="Tarjeta">Tarjeta de Debito</option>
+                    </select>
                 </div>
             </form>
         </mat-step>

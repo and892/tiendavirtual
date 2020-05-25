@@ -21,6 +21,7 @@ import { LayoutUserModule } from './layout-user/layout-user.module';
 // import { CategoriasProductosUserComponent } from './categorias-productos-user/categorias-productos-user.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { MaterialModule } from './material/material.module';
+// import { GroupByPipe } from './group-by.pipe';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { MaterialModule } from './material/material.module';
     PageRibbonComponent,
     ActiveMenuDirective,
     FooterComponent,
+    // GroupByPipe,
     // ProductoUserComponent,
     // FiltroPipe,
     // CategoriasProductosUserComponent

@@ -3,7 +3,9 @@
 .tab {
   background-color: blue($color: #000000) !important;
 }
-
+.asd{
+  background-color: blue($color: #000000);
+}
 /* Style the buttons inside the tab */
 .tab button {
   background-color: inherit;
