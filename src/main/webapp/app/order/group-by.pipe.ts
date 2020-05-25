@@ -11,15 +11,21 @@ export class GroupByPipe implements PipeTransform {
     const mapProduct = products.map( (product:any ) => product.id );
 
     const uniqueProducts = products.filter( (item: any,index: any,array: any) =>{
+
       const trueIndex = mapProduct.indexOf(item.id);
+
       if(trueIndex === index){
         item.quantity=1;
         return true;
+
       }else{
+
         array[trueIndex].quantity!++;
         return false;
       }
+
     });
+
     return uniqueProducts;
   }
   // transform(objectos: any[], id: string): any {

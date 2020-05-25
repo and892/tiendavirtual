@@ -39,21 +39,23 @@
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Datos Personales</ng-template>
-
+            <h3 class="text-center mb-4">Ingresa tus datos personales</h3>
             <form>
                 <div class="form-group">
-                    <!-- <label for="" class="text-center">Ingresa tus datos personales</label>
-                    <input type="text" class="form-control mt-2" placeholder="Nombre del cliente">
-                    <input type="text" class="form-control mt-2" placeholder="Numero telefonico"> -->
-                    <!-- <input type="text" class="form-control mt-2" placeholder="Correo">
-                    <input type="text" class="form-control mt-2" placeholder="Dirección"> -->
-                    <input [formControl]="nombreCategoriaField" type="text" class="form-control mt-2" placeholder="nombreCategoriaField">
-                    <input [formControl]="descripcionCategoriaField" type="text" class="form-control mt-2" placeholder="descripcionCategoriaField">
+                    <input type="text" class="form-control mt-2" [formControl]="nombreField"    name="" id="" placeholder="Ingresar nombre completo">
+                    <input type="text" class="form-control mt-2" [formControl]="apellidoField"  name="" id="" placeholder="Ingresar apellido completo">
+                    <input type="text" class="form-control mt-2" [formControl]="ciudadField"    name="" id="" placeholder="Ingresar la Ciudad">
+                    <input type="text" class="form-control mt-2" [formControl]="direccionField" name="" id="" placeholder="Ingresar la Direccion">
+                    <input type="text" class="form-control mt-2" [formControl]="telefonoField"  name="" id="" placeholder="Ingresa tu telefono">
+
+
+                    <!-- <input [formControl]="nombreCategoriaField" type="text" class="form-control mt-2" placeholder="nombreCategoriaField">
+                    <input [formControl]="descripcionCategoriaField" type="text" class="form-control mt-2" placeholder="descripcionCategoriaField"> -->
                     <!-- {{nombreCategoriaField.valid}}, {{nombreCategoriaField.invalid}} -->
-                    <div class="alert alert-danger mt-3" role="alert" *ngIf="nombreCategoriaField.invalid || descripcionCategoriaField.invalid">
-                        Los campos son invalidos.
+                    <div class="alert alert-danger mt-3" role="alert" *ngIf="nombreField.invalid || apellidoField.invalid || ciudadField.invalid || direccionField.invalid || telefonoField.invalid">
+                        Algun campo esta vacio.
                     </div>
-                    <button class="btn btn-primary mt-3" *ngIf="nombreCategoriaField.valid" (click)="saveData()">Guardar Datos</button>
+                    <button class="btn btn-primary mt-3" *ngIf="nombreField.valid || apellidoField.valid || ciudadField.valid || direccionField.valid || telefonoField.valid">Guardar Datos</button>
                 </div>
             </form>
         </mat-step>

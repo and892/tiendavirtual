@@ -14,8 +14,14 @@ import {ProductoCategoriaService} from './../../../entities/producto-categoria/p
 export class OrderComponent implements OnInit {
   productos$: Observable<IProducto[]>;
 
-  nombreCategoriaField: FormControl;
-  descripcionCategoriaField: FormControl;
+  // nombreCategoriaField: FormControl;
+  // descripcionCategoriaField: FormControl;
+
+  nombreField: FormControl;
+  apellidoField: FormControl;
+  ciudadField: FormControl;
+  direccionField: FormControl;
+  telefonoField: FormControl;
 
   constructor(
     private cartService: CartService,
@@ -25,17 +31,23 @@ export class OrderComponent implements OnInit {
       this.productos$ = this.cartService.cart$;
 
       // Params: Cadena que se mostrara en el input - Array de validaciones: ¿Que tipo quiero?
-      this.nombreCategoriaField = new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(10)
-      ]);
+      // this.nombreCategoriaField = new FormControl('', [
+      //   Validators.required,
+      //   Validators.minLength(4),
+      //   Validators.maxLength(10)
+      // ]);
 
-      this.descripcionCategoriaField = new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(10)
-      ]);
+      // this.descripcionCategoriaField = new FormControl('', [
+      //   Validators.required,
+      //   Validators.minLength(4),
+      //   Validators.maxLength(10)
+      // ]);
+
+      this.nombreField = new FormControl('', [ Validators.required,Validators.minLength(2)]);
+      this.apellidoField = new FormControl('', [ Validators.required,Validators.minLength(2)]);
+      this.ciudadField = new FormControl('', [ Validators.required,Validators.minLength(2)]);
+      this.direccionField = new FormControl('', [ Validators.required,Validators.minLength(2)]);
+      this.telefonoField = new FormControl('', [ Validators.required,Validators.minLength(2)]);
 
       // Controlar datos Observar los datos-Observar los datos. Escuchar cambios dinamicamente
       // this.nombreCategoriaField.valueChanges.subscribe(valor => console.warn(valor))
@@ -46,7 +58,12 @@ export class OrderComponent implements OnInit {
 
     ngOnInit(): void {
 
-      // penCity();
+      this.obtener();
+    }
+
+    obtener():void{
+        console.warn()
+        console.warn()
     }
 
     saveData(): void{
@@ -100,9 +117,9 @@ export class OrderComponent implements OnInit {
       //   "user": null
       // }
 
-      if(this.nombreCategoriaField.valid &&  this.descripcionCategoriaField.valid ){
-          console.warn(this.nombreCategoriaField.value)
-      }
+      // if(this.nombreCategoriaField.valid &&  this.descripcionCategoriaField.valid ){
+      //     console.warn(this.nombreCategoriaField.value)
+      // }
     }
 
 }
